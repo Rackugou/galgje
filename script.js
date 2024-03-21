@@ -18,11 +18,11 @@ for (let index = 0; index < woord.length; index++) {
 
 const buttons = document.querySelectorAll(".letter-knop");
 const alleP = document.querySelectorAll("p");
-const alleSpan = document.querySelectorAll("span")
-const alleWrapper = document.querySelectorAll("div")
+const alleSpan = document.querySelectorAll("span");
+const alleWrapper = document.querySelectorAll("div");
 
 function getLetter(l){
-    return document.querySelectorAll(`p[data-letter = ${l}]`)
+    return document.querySelectorAll(`p[data-letter = ${l}]`);
 }
 
 const galg = document.getElementById("galg");
@@ -30,36 +30,35 @@ let galgIndex = 0;
 
 function veranderGalg(){
     galgIndex++;
-    galg.src = "images/galg-" + galgIndex + ".png"
+    galg.src = "images/galg-" + galgIndex + ".png";
 }
 
 function ifTrue(letter, button){
-    const aanpas = getLetter(letter)
-    aanpas.forEach(verander => verander.className = "visible")
-    button.className = "groen"
-    button.disabled = true
-    
+    const aanpas = getLetter(letter);
+    aanpas.forEach(verander => verander.className = "visible");
+    button.className = "groen";
+    button.disabled = true;
     const alleVisible = Array.from(alleP).every(p => p.classList.contains("visible"));
     if(alleVisible){
-        buttons.forEach(uit => uit.disabled = true)
-        galg.src = "images/win.png"
+        buttons.forEach(uit => uit.disabled = true);
+        galg.src = "images/win.png";
     } 
 }
 
 function ifFalse(button){
-    button.className = "rood"
-    button.disabled = true
+    button.className = "rood";
+    button.disabled = true;
     if (galgIndex < 5){
-        veranderGalg()
+        veranderGalg();
     } else {
-        buttons.forEach(uit => uit.disabled = true)
-        veranderGalg()
-        alleP.forEach(verander => verander.className = "visible")
+        buttons.forEach(uit => uit.disabled = true);
+        veranderGalg();
+        alleP.forEach(verander => verander.className = "visible");
     }
 }
 
 function check(e){
-    const letter = e.target.textContent.toLowerCase()
+    const letter = e.target.textContent.toLowerCase();
     const inWoord = woord.includes(letter);
     if (inWoord) {
         ifTrue(letter, e.target);
@@ -73,13 +72,13 @@ buttons.forEach(button => button.addEventListener('click',(e) => check(e)));
 const resetButton = document.querySelector("button");
 
 function removeAll(){
-    alleP.forEach(remove => remove.remove("p"))
-    alleSpan.forEach(remove => remove.remove("span"))
-    alleWrapper.forEach(remove => remove.remove("div"))
+    alleP.forEach(remove => remove.remove("p"));
+    alleSpan.forEach(remove => remove.remove("span"));
+    alleWrapper.forEach(remove => remove.remove("div"));
 }
 
 function reset(){
     document.location.reload();
 }
 
-resetButton.addEventListener('click', reset)
+resetButton.addEventListener('click', reset);
